@@ -7,11 +7,11 @@ A production-ready Node.js + Express backend with secure JWT authentication, Mon
 
 ## 🏷️ Tech Stack
 
-![NodeJS](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white)
-![Status](https://img.shields.io/badge/ACTIVE--DEVELOPMENT-blueviolet?style=flat)
+![Python](https://img.shields.io/badge/PYTHON-3776AB?style=flat-square&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/PANDAS-150458?style=flat-square&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/MATPLOTLIB-003B57?style=flat-square&logo=matplotlib&logoColor=white)
+![Data Automation](https://img.shields.io/badge/DATA--AUTOMATION-46A037?style=flat-square)
+
 
 </div>
 
