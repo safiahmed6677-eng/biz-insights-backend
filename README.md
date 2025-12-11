@@ -7,14 +7,16 @@ A production-ready Node.js + Express backend with secure JWT authentication, Mon
 
 ## 🏷️ Tech Stack
 
-![NodeJS](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
-![Status](https://img.shields.io/badge/Status-ACTIVE--DEVELOPMENT-blueviolet?style=for-the-badge&logo=github)
-
+![NodeJS](https://img.shields.io/badge/NODE.JS-339933?style=flat-square&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/EXPRESS.JS-000000?style=flat-square&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MONGODB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)
+![Status](https://img.shields.io/badge/ACTIVE--DEVELOPMENT-6A5ACD?style=flat-square)
 
 </div>
+
+---
+
 
 ---
 
