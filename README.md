@@ -1,48 +1,71 @@
 # 📌 Biz Insights Backend  
-A Node.js + Express backend with secure JWT authentication, MongoDB persistence, and modular architecture — built as part of a full-stack SaaS web application.
+A production-ready Node.js + Express backend with secure JWT authentication, MongoDB persistence, and a modular, scalable architecture — built as the backend for the **Biz Insights** SaaS application.
 
 ---
 
-## ⭐ Features
-- 🔐 **User Authentication**
+# 🏷️ Badges  
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green)  
+![Express](https://img.shields.io/badge/Express.js-4.x-lightgrey)  
+![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen)  
+![JWT](https://img.shields.io/badge/Auth-JWT-blue)  
+![Status](https://img.shields.io/badge/Status-Active--Development-blueviolet)
+
+---
+
+# 📑 Table of Contents
+- [✨ Features](#-features)  
+- [🛠 Tech Stack](#-tech-stack)  
+- [📁 Project Structure](#-project-structure)  
+- [🔑 Environment Variables](#-environment-variables)  
+- [🚦 API Endpoints](#-api-endpoints)  
+- [🔒 Authentication Workflow](#-authentication-workflow)  
+- [▶️ Running Locally](#️-running-locally)  
+- [🧩 Planned Features (Phase 2)](#-planned-features-phase-2)  
+- [👤 Author](#-author)
+
+---
+
+## ✨ Features
+- 🔐 **Full Authentication System**
   - Register new users  
   - Login users  
-  - Password hashing with bcrypt  
-  - JWT authentication  
+  - Passwords hashed with bcrypt  
+  - JWT token generation  
   - Protected routes  
 
-- 🗄 **MongoDB Integration**
-  - Connection via Mongoose  
-  - Clean schema design  
+- 🗄 **MongoDB Data Layer**
+  - Mongoose schema  
+  - DB connection handler  
 
-- 🧱 **Modular Architecture**
+- 🧱 **Clean Architecture**
   - Controllers  
-  - Routes  
   - Models  
+  - Routes  
   - Middleware  
   - Utils  
 
-- 🚀 **Scalable Structure**
-  - Designed to add CSV upload  
+- 🔮 **Future-Ready Infrastructure**
+  - CSV upload support  
   - Analytics endpoints  
-  - Dashboard functionality  
-  - AI/insight features  
+  - Dashboard metrics  
+  - AI insights  
 
 ---
 
 ## 🛠 Tech Stack
-- Node.js  
-- Express.js  
-- MongoDB + Mongoose  
-- JWT (jsonwebtoken)  
-- bcryptjs  
-- dotenv  
-- Nodemon  
+- **Node.js**
+- **Express.js**
+- **MongoDB** with **Mongoose**
+- **JWT**
+- **bcryptjs**
+- **dotenv**
+- **Nodemon**
 
 ---
 
 ## 📁 Project Structure
 
+---
 
 
 ---
@@ -57,59 +80,83 @@ Create a `.env` file in the project root:
 
 ## 🚦 API Endpoints
 
-### Auth Routes
+---
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Login user and receive JWT |
-| GET  | `/api/auth/protected` | Protected route (requires token) |
+### 🟦 Register User  
+`POST /api/auth/register`
+
+**Body:**
+```json
+{
+  "username": "safi",
+  "email": "safi@test.com",
+  "password": "password123"
+}
+```
+---
+
+### 🟦 Login User  
+`POST /api/auth/login`
+
+**Body:**
+```json
+{
+  "email": "safi@test.com",
+  "password": "password123"
+}
+```
 
 ---
 
-## 🔒 Authentication Workflow
-1. User registers → password hashed → JWT created  
-2. User logs in → receives JWT  
-3. JWT is passed in request headers:
+### 🔐 Protected Route  
+GET /api/auth/protected`
 
-4. Middleware validates the token  
-5. Access is granted to protected routes  
+**Headers:**
+
+Authorization: Bearer <JWT_TOKEN>
+
+**Response:**
+```json
+{
+  "message": "Access granted",
+  "user": {
+    "id": "user_id_here",
+    "email": "user_email_here"
+  }
+}
+```
 
 ---
 
-## ▶️ Running Locally
+### 🔒 Authentication Workflow 
 
-### 1️⃣ Install dependencies
+1. User registers → password hashed → JWT generated
+2. User logs in → receives JWT token
+3. On protected routes, client sends:
 
+Authorization: Bearer <token>
 
-### 2️⃣ Create your `.env` file  
-Add MongoDB credentials & JWT secret.
+4. Middleware validates the token 
+5. Access granted only if the token is valid
 
+---
 
-### 2️⃣ Create your `.env` file  
-Add MongoDB credentials & JWT secret.
+### ▶️ Running Locally
 
-### 3️⃣ Start development server
+## 1️⃣ Install dependencies
 
-Server defaults to:
+npm install
+
+## 2️⃣ Create .env
+
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+
+## 3️⃣ Start development server
+
+npm run dev
+
+Server runs at:
+
 http://localhost:5000
-
-MongoDB must be running locally or via MongoDB Atlas.
-
----
-
-## 🧩 Planned Features (Phase 2)
-- CSV upload & parsing  
-- Data analytics & insights  
-- User dashboard  
-- Chart endpoints for frontend  
-- AI-generated business insights  
-- Role-based access control  
-- Deployment (Render/Netlify/Vercel)  
-
----
-
-## 🧑‍💻 Author
-**Safi Ahmed**  
-Developing a production-grade full-stack SaaS application using modern web technologies.
-
