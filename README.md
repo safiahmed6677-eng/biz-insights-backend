@@ -2,13 +2,13 @@
 A production-ready Node.js + Express backend with secure JWT authentication, MongoDB persistence, and a modular, scalable architecture — built as the backend for the **Biz Insights** SaaS application.
 
 ---
-
+ 
 # 🏷️ Badges  
-![Node.js](https://img.shields.io/badge/Node.js-18.x-green)  
-![Express](https://img.shields.io/badge/Express.js-4.x-lightgrey)  
-![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen)  
-![JWT](https://img.shields.io/badge/Auth-JWT-blue)  
-![Status](https://img.shields.io/badge/Status-Active--Development-blueviolet)
+![NodeJS](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=node.js&logoColor=white)  
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)  
+![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)  
+![JWT](https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)  
+![Status](https://img.shields.io/badge/Status-ACTIVE--DEVELOPMENT-blueviolet?style=for-the-badge&logo=github)
 
 ---
 
