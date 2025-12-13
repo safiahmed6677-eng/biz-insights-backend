@@ -2,9 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const Dataset = require("../models/Dataset");
 
-/**
- * Upload CSV and store dataset
- */
+
 exports.uploadCSV = async (req, res) => {
   try {
     if (!req.file) {
@@ -42,9 +40,7 @@ exports.uploadCSV = async (req, res) => {
   }
 };
 
-/**
- * List datasets for logged-in user (clean response)
- */
+
 exports.getDatasets = async (req, res) => {
   try {
     const datasets = await Dataset.find({ user: req.user.id })
@@ -65,9 +61,7 @@ exports.getDatasets = async (req, res) => {
   }
 };
 
-/**
- * Get single dataset with preview
- */
+
 exports.getDatasetById = async (req, res) => {
   try {
     const dataset = await Dataset.findOne({
@@ -92,9 +86,7 @@ exports.getDatasetById = async (req, res) => {
   }
 };
 
-/**
- * Basic analytics for dataset
- */
+
 exports.getDatasetStats = async (req, res) => {
   try {
     const dataset = await Dataset.findOne({

@@ -16,7 +16,6 @@ router.post(
   uploadCSV
 );
 
-// ✅ NEW: list datasets for logged-in user
 router.get("/", authMiddleware, getDatasets);
 router.get("/:id", authMiddleware, getDatasetById);
 router.get("/:id/stats", authMiddleware, getDatasetStats);
