@@ -125,3 +125,37 @@ exports.getDatasetStats = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.getDatasetInsights = async (req, res) => {
+  try {
+    const dataset = await Dataset.findOne({
+      _id: req.params.id,
+      user: req.user.id
+    });
+
+    if (!dataset) {
+      return res.status(404).json({ message: "Dataset not found" });
+    }
+
+    const sample = dataset.data.slice(0, 5);
+
+    const columnTypes = {};
+    dataset.columns.forEach(col => {
+      const values = dataset.data.map(row => row[col]).filter(v => v !== undefined);
+      const numericCount = values.filter(v => !isNaN(Number(v))).length;
+
+      columnTypes[col] =
+        numericCount / values.length > 0.8 ? "numeric" : "categorical";
+    });
+
+    res.json({
+      filename: dataset.originalName,
+      rows: dataset.rowCount,
+      columns: dataset.columns.length,
+      columnTypes,
+      preview: sample
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

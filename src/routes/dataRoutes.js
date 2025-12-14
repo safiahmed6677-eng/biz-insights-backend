@@ -1,23 +1,28 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../config/upload");
 const authMiddleware = require("../middleware/authMiddleware");
+const multer = require("multer");
+
 const {
   uploadCSV,
   getDatasets,
-  getDatasetById,
-  getDatasetStats
+  getDatasetInsights
 } = require("../controllers/dataController");
 
-router.post(
-  "/upload",
-  authMiddleware,
-  upload.single("file"),
-  uploadCSV
-);
+/* Multer setup */
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  }
+});
 
+const upload = multer({ storage });
+
+router.post("/upload", authMiddleware, upload.single("file"), uploadCSV);
 router.get("/", authMiddleware, getDatasets);
-router.get("/:id", authMiddleware, getDatasetById);
-router.get("/:id/stats", authMiddleware, getDatasetStats);
+router.get("/:id/insights", authMiddleware, getDatasetInsights);
 
 module.exports = router;
