@@ -139,13 +139,32 @@ exports.getDatasetInsights = async (req, res) => {
 
     const sample = dataset.data.slice(0, 5);
 
+    /* Column types */
     const columnTypes = {};
     dataset.columns.forEach(col => {
-      const values = dataset.data.map(row => row[col]).filter(v => v !== undefined);
+      const values = dataset.data.map(row => row[col]);
       const numericCount = values.filter(v => !isNaN(Number(v))).length;
 
       columnTypes[col] =
         numericCount / values.length > 0.8 ? "numeric" : "categorical";
+    });
+
+    /* 🔹 Numeric stats */
+    const numericStats = {};
+    dataset.columns.forEach(col => {
+      const values = dataset.data
+        .map(row => Number(row[col]))
+        .filter(v => !isNaN(v));
+
+      if (values.length > 0) {
+        numericStats[col] = {
+          min: Math.min(...values),
+          max: Math.max(...values),
+          average: Number(
+            (values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)
+          )
+        };
+      }
     });
 
     res.json({
@@ -153,7 +172,114 @@ exports.getDatasetInsights = async (req, res) => {
       rows: dataset.rowCount,
       columns: dataset.columns.length,
       columnTypes,
-      preview: sample
+      preview: sample,
+      numericStats // ✅ THIS is what your UI needs
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getDatasetChart = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { y } = req.query;
+
+    if (!y) {
+      return res.status(400).json({ message: "Missing y query parameter" });
+    }
+
+    const dataset = await Dataset.findOne({
+      _id: id,
+      user: req.user.id
+    });
+
+    if (!dataset) {
+      return res.status(404).json({ message: "Dataset not found" });
+    }
+
+    const values = dataset.data
+      .map((row, index) => ({
+        index: index + 1,
+        value: Number(row[y])
+      }))
+      .filter((d) => !isNaN(d.value));
+
+    res.json({
+      column: y,
+      points: values
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getDatasetStats = async (req, res) => {
+  try {
+    const dataset = await Dataset.findOne({
+      _id: req.params.id,
+      user: req.user.id
+    });
+
+    if (!dataset) {
+      return res.status(404).json({ message: "Dataset not found" });
+    }
+
+    const stats = {};
+
+    dataset.columns.forEach((col) => {
+      const values = dataset.data
+        .map((row) => Number(row[col]))
+        .filter((v) => !isNaN(v));
+
+      if (values.length === 0) return;
+
+      const sum = values.reduce((a, b) => a + b, 0);
+
+      stats[col] = {
+        count: values.length,
+        min: Math.min(...values),
+        max: Math.max(...values),
+        avg: Number((sum / values.length).toFixed(2))
+      };
+    });
+
+    res.json({
+      id: dataset._id,
+      stats
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+exports.getDatasetChart = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { column } = req.query;
+
+    if (!column) {
+      return res.status(400).json({ message: "Missing column query parameter" });
+    }
+
+    const dataset = await Dataset.findOne({
+      _id: id,
+      user: req.user.id
+    });
+
+    if (!dataset) {
+      return res.status(404).json({ message: "Dataset not found" });
+    }
+
+    const values = dataset.data
+      .map((row, index) => ({
+        index: index + 1,
+        value: Number(row[column])
+      }))
+      .filter(d => !isNaN(d.value));
+
+    res.json({
+      column,
+      points: values
     });
   } catch (err) {
     res.status(500).json({ message: err.message });

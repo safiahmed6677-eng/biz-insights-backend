@@ -6,10 +6,14 @@ const multer = require("multer");
 const {
   uploadCSV,
   getDatasets,
-  getDatasetInsights
+  getDatasetInsights,
+  getDatasetStats,
+  getDatasetChart
 } = require("../controllers/dataController");
 
-/* Multer setup */
+/* =========================
+   MULTER CONFIG
+========================= */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
@@ -19,10 +23,34 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === "text/csv") {
+      cb(null, true);
+    } else {
+      cb(new Error("Only CSV files allowed"));
+    }
+  }
+});
 
+/* =========================
+   ROUTES
+========================= */
+
+// Upload CSV
 router.post("/upload", authMiddleware, upload.single("file"), uploadCSV);
+
+// List datasets (no raw data)
 router.get("/", authMiddleware, getDatasets);
+
+// Dataset insights (types + preview)
 router.get("/:id/insights", authMiddleware, getDatasetInsights);
+
+// Dataset stats (min / max / avg / count)
+router.get("/:id/stats", authMiddleware, getDatasetStats);
+
+// Dataset chart data
+router.get("/:id/chart", authMiddleware, getDatasetChart);
 
 module.exports = router;
