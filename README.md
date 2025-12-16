@@ -69,13 +69,6 @@ A production-ready Node.js + Express backend with secure JWT authentication, Mon
 
 ---
 
-## 📁 Project Structure
-
----
-
-
----
-
 ## 🔑 Environment Variables
 Create a `.env` file in the project root:
 
