@@ -159,3 +159,22 @@ npm run dev
 Server runs at:
 
 http://localhost:5000
+
+---
+
+## 🧠 What I Learned
+
+Building the Biz Insights backend strengthened my understanding of real-world backend development, including:
+
+- Designing a **modular Express architecture** using routes, controllers, middleware, and utilities
+- Implementing **JWT authentication** and protecting API routes securely
+- Managing **user-specific data access** to prevent unauthorized dataset access
+- Handling **file uploads with Multer** and validating CSV inputs
+- Parsing and storing structured CSV data in **MongoDB using Mongoose**
+- Writing analytics logic to extract **numeric insights and summaries** from datasets
+- Debugging common production issues such as environment variables, file paths, and database authentication
+- Structuring APIs with scalability in mind for future features like AI insights and dashboards
+
+This project helped bridge the gap between theoretical backend knowledge and production-ready API development.
+
+---
