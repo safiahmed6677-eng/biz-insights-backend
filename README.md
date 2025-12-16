@@ -178,3 +178,15 @@ Building the Biz Insights backend strengthened my understanding of real-world ba
 This project helped bridge the gap between theoretical backend knowledge and production-ready API development.
 
 ---
+
+## 🚀 Future Improvements
+
+- 🔐 Role-based access control (RBAC)
+- 📊 Advanced analytics endpoints (aggregations, trends)
+- 🗑 Dataset deletion & update endpoints
+- 📄 Pagination for large datasets
+- ⚡ Performance optimisations for large CSV uploads
+- 🧪 Improved validation & error handling
+- ☁️ Optional deployment (Docker / cloud hosting)
+
+---
